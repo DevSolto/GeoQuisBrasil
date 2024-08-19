@@ -44,25 +44,30 @@ export function CityFinder({ acronym }: CityFinderProps) {
   const searchCity = () => {
     // Função para normalizar a string, removendo acentos e cedilhas
     const normalizeString = (str: string) =>
-      str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-  
+      str
+        .trim()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/\s*\(.*\)\s*$/, "")
+
     // Verifica se o nome da cidade digitado está na lista de cidades
     const foundCity = cities.find(
       (city) => normalizeString(city.nome) === normalizeString(value)
     );
-  
+
     if (foundCity && !correctCities.includes(foundCity.nome)) {
       // Adiciona a cidade à lista de cidades corretas se ainda não estiver nela
       setCorrectCities((prevCities) => [...prevCities, foundCity.nome.toLowerCase()]);
       progressCalculator(correctCities.length, cities.length)
     }
-  
+
     // Limpa o campo de input após a tentativa
     setValue("");
   };
   const progressCalculator = (value: number, total: number) => {
     if (total === 0) {
-         setProgress(0)
+      setProgress(0)
     }
     setProgress((value / total) * 100)
   }
@@ -86,10 +91,15 @@ export function CityFinder({ acronym }: CityFinderProps) {
       <p>
         Acertos {correctCities.length} / {cities.length}
       </p>
-      <Progress value={progress}/>
+      <Progress value={progress} />
       <ul>
         {correctCities.map((city) => (
           <li className="capitalize" key={city}>{city}</li>
+        ))}
+      </ul>
+      <ul>
+        {cities.map((city) => (
+          <li className="capitalize" key={city.codigo_ibge}>{city.nome}</li>
         ))}
       </ul>
     </section>
