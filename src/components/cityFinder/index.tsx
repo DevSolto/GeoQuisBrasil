@@ -97,11 +97,6 @@ export function CityFinder({ acronym }: CityFinderProps) {
           <li className="capitalize" key={city}>{city}</li>
         ))}
       </ul>
-      <ul>
-        {cities.map((city) => (
-          <li className="capitalize" key={city.codigo_ibge}>{city.nome}</li>
-        ))}
-      </ul>
     </section>
   );
 }
