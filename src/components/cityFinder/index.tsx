@@ -75,11 +75,11 @@ export function CityFinder({ acronym }: CityFinderProps) {
 
 
   if (!acronym) {
-    return <p>Selecione um estado!</p>;
+    return <p className="w-full text-center">Selecione um estado!</p>;
   }
 
   return (
-    <section className="w-72 flex flex-col gap-2">
+    <section className="w-72 flex flex-col gap-2 items-center justify-center">
       <div className="flex gap-2 mb-4">
         <Input
           placeholder="Digite o nome de uma cidade"
