@@ -13,8 +13,6 @@ type City = {
   codigo_ibge: string;
 };
 
-
-
 export function CityFinder({ acronym }: CityFinderProps) {
   const [cities, setCities] = useState<City[]>([]);
   const [value, setValue] = useState("");
@@ -71,8 +69,6 @@ export function CityFinder({ acronym }: CityFinderProps) {
     }
     setProgress((value / total) * 100)
   }
-
-
 
   if (!acronym) {
     return <p className="w-full text-center">Selecione um estado!</p>;
